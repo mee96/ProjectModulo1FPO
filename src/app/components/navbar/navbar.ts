@@ -1,8 +1,8 @@
 import { Component, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { AuthService } from '../../services/auth';
-import { CarritoService } from '../../services/carrito';
+import { AuthService } from '../../services/auth';  
+import { CarritoService } from '../../services/carrito';  
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,7 +13,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.scss']
 })
 export class NavbarComponent {
-  // Usamos computed para obtener los valores actualizados
   totalItems = computed(() => this.carritoService.totalItems());
   isLoggedIn = computed(() => this.authService.isLoggedIn());
 
