@@ -1,59 +1,54 @@
-# ProjectModulo1FPO
+# 🥩 Chuletones
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.6.
+[![Angular](https://img.shields.io/badge/Angular-19-red)](https://angular.io/)
+[![Firebase](https://img.shields.io/badge/Firebase-Latest-orange)](https://firebase.google.com/)
+[![SASS](https://img.shields.io/badge/SASS-CC6699?style=flat&logo=sass&logoColor=white)](https://sass-lang.com/)
 
-## Development server
+Aplicación web para la gestión de chuletones premium con autenticación de usuarios, carrito de compras.
 
-To start a local development server, run:
+## 📋 Descripción del Proyecto
 
-```bash
-ng serve
-```
+Proyecto desarrollado para el módulo de **Angular** que consiste en una tienda online de chuletones de alta calidad. Los usuarios pueden registrarse, iniciar sesión, visualizar diferentes tipos de chuletones con sus características, añadirlos a un carrito y consultar restaurantes cercanos.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## ✨ Características
 
-## Code scaffolding
+- 🔐 **Autenticación completa** (Registro/Login) con Firebase Auth
+- 🛒 **Carrito de compras** con Signals y cálculo automático de totales
+- 📱 **Diseño responsive** con temática vintage y paleta de colores cálidos
+- 🖼️ **Galería de productos** con imágenes y modal de detalles
+- 🚀 **Lazy loading** para optimizar el rendimiento
+- 🛡️ **Guards de rutas** para proteger contenido privado
+- 📊 **Formularios reactivos** con validación
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 🛠️ Tecnologías Utilizadas
 
-```bash
-ng generate component component-name
-```
+| Tecnología | Versión | Propósito |
+|------------|---------|-----------|
+| Angular | 19 | Framework principal |
+| Firebase Auth | Latest | Autenticación de usuarios |
+| Angular Signals | 19 | Estado reactivo |
+| SASS | - | Estilos y diseño |
+| TypeScript | 5+ | Tipado seguro |
+| Angular Router | 19 | Navegación y lazy loading |
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 🚀 Instalación y Configuración
 
-```bash
-ng generate --help
-```
+### Requisitos previos
 
-## Building
+- Node.js (versión 18 o superior)
+- npm (incluido con Node.js)
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+### Pasos para ejecutar localmente
 
 ```bash
-ng e2e
-```
+# 1. Clonar el repositorio
+git clone https://github.com/mee96/ProjectModulo1FPO.git
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+# 2. Entrar al directorio
+cd ProjectModulo1FPO
 
-## Additional Resources
+# 3. Instalar dependencias
+npm install
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+# 4. Ejecutar la aplicación
+ng serve -o
