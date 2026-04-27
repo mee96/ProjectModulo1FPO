@@ -1,0 +1,37 @@
+<div class="modal-overlay" (click)="cerrarFondo($event)">
+  <div class="modal-content" *ngIf="chuleton">
+    <button class="close-btn" (click)="cerrar()">✕</button>
+    
+    <div class="modal-header">
+      <h2>{{ chuleton.tipo }}</h2>
+      <p class="subtitulo">chuletón de calidad premium</p>
+    </div>
+
+    <div class="modal-body">
+      <div class="detalle-item">
+        <span class="detalle-label">🌍 Origen</span>
+        <span class="detalle-valor">{{ chuleton.origen }}</span>
+      </div>
+
+      <div class="detalle-item">
+        <span class="detalle-label">⚖️ Peso</span>
+        <span class="detalle-valor">{{ chuleton.peso }} kg</span>
+      </div>
+
+      <div class="detalle-item">
+        <span class="detalle-label">🕒 Maduración</span>
+        <span class="detalle-valor">{{ chuleton.maduracion }} semanas</span>
+      </div>
+
+      <div class="detalle-item">
+        <span class="detalle-label">💰 Precio</span>
+        <span class="detalle-valor">{{ chuleton.precio }} €/kg</span>
+      </div>
+
+      <div class="detalle-total">
+        <span>Precio aproximado:</span>
+        <strong>{{ (chuleton.precio * chuleton.peso) | number:'1.0-0' }} €</strong>
+      </div>
+    </div>
+  </div>
+</div>

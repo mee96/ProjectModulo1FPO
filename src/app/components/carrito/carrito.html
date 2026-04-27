@@ -1,0 +1,106 @@
+<div class="carrito-container">
+  <div class="carrito-header">
+    <h1>Mi Carrito</h1>
+    <p>revisa tu selección de chuletones</p>
+  </div>
+
+  <div class="carrito-content" *ngIf="carrito().length > 0; else carritoVacio">
+    <div class="carrito-items">
+      <div class="items-header">
+        <span>Producto</span>
+        <span>Cantidad</span>
+        <span>Subtotal</span>
+        <span></span>
+      </div>
+
+      <div class="item-card" *ngFor="let item of carrito()">
+        <div class="item-info">
+          <div class="item-imagen">
+            <span class="emoji">🥩</span>
+          </div>
+          <div class="item-detalles">
+            <h3>{{ item.tipo }}</h3>
+            <p>{{ item.origen }}</p>
+            <div class="item-especificaciones">
+              <span>{{ item.peso }}kg</span>
+              <span>{{ item.maduracion }} semanas</span>
+              <span>{{ item.precio }}€/kg</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="item-cantidad">
+          <button (click)="actualizarCantidad(item, item.cantidad - 1)" class="qty-btn">-</button>
+          <span class="qty-value">{{ item.cantidad }}</span>
+          <button (click)="actualizarCantidad(item, item.cantidad + 1)" class="qty-btn">+</button>
+        </div>
+
+        <div class="item-subtotal">
+          {{ (item.precio * item.peso * item.cantidad) | number:'1.2-2' }}€
+        </div>
+
+        <div class="item-actions">
+          <button (click)="eliminarItem(item)" class="delete-btn" title="Eliminar">
+            🗑️
+          </button>
+        </div>
+      </div>
+
+      <div class="carrito-actions">
+        <button (click)="seguirComprando()" class="btn-continue">
+          ← Seguir comprando
+        </button>
+        <button (click)="vaciarCarrito()" class="btn-clear">
+          Vaciar carrito
+        </button>
+      </div>
+    </div>
+
+    <div class="carrito-resumen">
+      <div class="resumen-card">
+        <h3>Resumen del pedido</h3>
+        
+        <div class="resumen-line">
+          <span>Subtotal ({{ getTotalItems() }} items)</span>
+          <span>{{ getSubtotal() | number:'1.2-2' }}€</span>
+        </div>
+        
+        <div class="resumen-line">
+          <span>IVA (21%)</span>
+          <span>{{ getIva() | number:'1.2-2' }}€</span>
+        </div>
+        
+        <div class="resumen-line envio">
+          <span>Envío</span>
+          <span>Gratis</span>
+        </div>
+        
+        <div class="resumen-total">
+          <span>Total</span>
+          <strong>{{ getTotal() | number:'1.2-2' }}€</strong>
+        </div>
+
+        <button class="btn-checkout" (click)="finalizarCompra()">
+          Finalizar compra
+        </button>
+
+        <p class="envio-info">
+          Envío gratuito para todos los pedidos
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #carritoVacio>
+    <div class="carrito-vacio">
+      <div class="vacio-content">
+        <span class="vacio-emoji">🛒</span>
+        <h2>Tu carrito está vacío</h2>
+        <p>Parece que aún no has elegido ningún chuletón</p>
+        <button (click)="seguirComprando()" class="btn-empty">
+          Ver nuestros chuletones
+        </button>
+      </div>
+    </div>
+  </ng-template>
+</div>

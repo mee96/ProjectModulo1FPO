@@ -1,0 +1,42 @@
+<app-navbar></app-navbar>
+<div class="tienda-container">
+
+  <header class="header">
+    <h1>Nuestros Chuletones</h1>
+    <p>selección premium de las mejores razas</p>
+  </header>
+
+  <div class="productos-grid">
+    <div class="producto-card" *ngFor="let chuleton of chuletones()">
+      <div class="card-image">
+        <img [src]="chuleton.imagen" [alt]="chuleton.tipo" class="chuleton-img">
+        <span class="tipo-badge">{{ chuleton.tipo }}</span>
+      </div>
+      
+      <div class="card-content">
+        <h3 (click)="abrirDetalle(chuleton)">{{ chuleton.tipo }}</h3>
+        <p class="origen">{{ chuleton.origen }}</p>
+        
+        <div class="caracteristicas">
+          <span class="tag">⚖️ {{ chuleton.peso }}kg</span>
+          <span class="tag">🕒 {{ chuleton.maduracion }} semanas</span>
+        </div>
+        
+        <div class="precio">
+          <span class="precio-valor">{{ chuleton.precio | number:'1.0-0' }}€/kg</span>
+          <span class="precio-total">~{{ (chuleton.precio * chuleton.peso) | number:'1.0-0' }}€</span>
+        </div>
+        
+        <button class="btn-add" (click)="anadirAlCarrito(chuleton)">
+          Añadir al carrito
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-modal-detalle 
+  *ngIf="showModal()"
+  [chuleton]="selectedChuleton()"
+  (close)="cerrarModal()">
+</app-modal-detalle>

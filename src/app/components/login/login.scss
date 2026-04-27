@@ -1,0 +1,141 @@
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  padding: 1rem;
+}
+
+.login-card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 8px 32px var(--shadow);
+
+  .logo {
+    text-align: center;
+    margin-bottom: 2rem;
+
+    h1 {
+      font-size: 1.8rem;
+      letter-spacing: 2px;
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    p {
+      color: var(--accent);
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      margin-top: 0.5rem;
+    }
+  }
+
+  .tab-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+
+    button {
+      flex: 1;
+      padding: 0.75rem;
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      position: relative;
+      cursor: pointer;
+
+      &.active {
+        color: var(--accent);
+        
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: -1px;
+          left: 0;
+          right: 0;
+          height: 2px;
+          background: var(--accent);
+        }
+      }
+
+      &:hover {
+        color: var(--accent-hover);
+      }
+    }
+  }
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+
+  input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: transparent;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    color: var(--text-primary);
+
+    &:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    &.error {
+      border-color: #c62828;
+    }
+  }
+
+  label {
+    position: absolute;
+    left: 0.75rem;
+    top: -0.5rem;
+    background: var(--card-bg);
+    padding: 0 0.25rem;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+  }
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 0.875rem;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.error-message {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: #ffebee;
+  color: #c62828;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  text-align: center;
+}
