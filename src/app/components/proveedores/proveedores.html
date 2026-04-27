@@ -1,0 +1,104 @@
+<app-navbar></app-navbar>
+
+<div class="proveedores-container">
+  <div class="header">
+    <h1>📦 Panel de Proveedores</h1>
+    <p>Gestión de chuletones - Añade o modifica nuevos productos</p>
+  </div>
+
+  <!-- Mensajes de éxito/error -->
+  <div class="mensaje-exito" *ngIf="mensajeExito()">
+    {{ mensajeExito() }}
+  </div>
+  <div class="mensaje-error" *ngIf="mensajeError()">
+    {{ mensajeError() }}
+  </div>
+
+  <!-- Botón para añadir -->
+  <div class="acciones">
+    <button class="btn-agregar" (click)="abrirFormulario()">
+      + Nuevo Chuletón
+    </button>
+  </div>
+
+  <!-- Formulario (se muestra cuando showForm es true) -->
+  <div class="formulario-container" *ngIf="showForm()">
+    <div class="form-card">
+      <h3>{{ editMode() ? '✏️ Editar Chuletón' : '➕ Añadir Nuevo Chuletón' }}</h3>
+      
+      <form [formGroup]="chuletonForm" (ngSubmit)="guardarChuleton()">
+        <div class="form-grid">
+          <div class="input-group">
+            <label>🍖 Tipo *</label>
+            <input type="text" formControlName="tipo" placeholder="Ej: Wagyu, Angus...">
+            <small *ngIf="chuletonForm.get('tipo')?.invalid && chuletonForm.get('tipo')?.touched">
+              El tipo es requerido (mínimo 3 caracteres)
+            </small>
+          </div>
+
+          <div class="input-group">
+            <label>🌍 Origen *</label>
+            <input type="text" formControlName="origen" placeholder="Ej: Japón, Galicia...">
+          </div>
+
+          <div class="input-group">
+            <label>⚖️ Peso (kg) *</label>
+            <input type="number" formControlName="peso" step="0.1" placeholder="0.5">
+            <small>Entre 0.1 y 5 kg</small>
+          </div>
+
+          <div class="input-group">
+            <label>🕒 Maduración (semanas) *</label>
+            <input type="number" formControlName="maduracion" placeholder="12">
+            <small>Entre 0 y 60 semanas</small>
+          </div>
+
+          <div class="input-group">
+            <label>💰 Precio (€/kg) *</label>
+            <input type="number" formControlName="precio" step="1" placeholder="85">
+            <small>Entre 10 y 500 €/kg</small>
+          </div>
+
+          <div class="input-group">
+            <label>🖼️ URL Imagen *</label>
+            <input type="text" formControlName="imagen" placeholder="assets/chuleton-nuevo.jpg">
+            <small>Ruta de la imagen en assets/</small>
+          </div>
+        </div>
+
+        <div class="form-buttons">
+          <button type="submit" class="btn-guardar" [disabled]="chuletonForm.invalid">
+  {{ editMode() ? 'Actualizar' : 'Guardar' }}
+</button>
+          <button type="button" class="btn-cancelar" (click)="cancelar()">
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Listado de chuletones existentes -->
+  <div class="lista-chuletones">
+    <h2>📋 Chuletones disponibles</h2>
+    
+    <div class="grid-lista">
+      <div class="item-card" *ngFor="let chuleton of chuletones()">
+        <img [src]="chuleton.imagen" [alt]="chuleton.tipo" class="item-img">
+        <div class="item-info">
+          <h4>{{ chuleton.tipo }}</h4>
+          <p>{{ chuleton.origen }}</p>
+          <div class="item-detalles">
+            <span>{{ chuleton.peso }}kg</span>
+            <span>{{ chuleton.maduracion }} semanas</span>
+            <span>{{ chuleton.precio }}€/kg</span>
+          </div>
+        </div>
+        <div class="item-acciones">
+          <button class="btn-editar" (click)="editarChuleton(chuleton)">✏️ Editar</button>
+          <button class="btn-eliminar" (click)="eliminarChuleton(chuleton.id!)">🗑️ Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

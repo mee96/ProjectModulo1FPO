@@ -24,5 +24,10 @@ export const routes: Routes = [
         path: 'carrito',
         loadComponent: () => import('./components/carrito/carrito').then(m => m.CarritoComponent),
         ...canActivate(redirectUnauthorizedToLogin)
+    },
+    {
+        path: 'proveedores',  
+        loadComponent: () => import('./components/proveedores/proveedores').then(m => m.ProveedoresComponent),
+        ...canActivate(redirectUnauthorizedToLogin)
     }
 ];

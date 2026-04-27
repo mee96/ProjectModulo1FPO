@@ -7,32 +7,35 @@
   </header>
 
   <div class="productos-grid">
-    <div class="producto-card" *ngFor="let chuleton of chuletones()">
-      <div class="card-image">
-        <img [src]="chuleton.imagen" [alt]="chuleton.tipo" class="chuleton-img">
-        <span class="tipo-badge">{{ chuleton.tipo }}</span>
+  <div class="producto-card" *ngFor="let chuleton of chuletones(); trackBy: trackByTipo">
+    <div class="card-image">
+      <img [src]="chuleton.imagen || 'assets/chuleton-default.jpg'" 
+           [alt]="chuleton.tipo || 'Chuletón'" 
+           class="chuleton-img"
+           (error)="chuleton.imagen = 'assets/chuleton-default.jpg'">
+      <span class="tipo-badge">{{ chuleton.tipo || 'Sin nombre' }}</span>
+    </div>
+    
+    <div class="card-content">
+      <h3 (click)="abrirDetalle(chuleton)">{{ chuleton.tipo || 'Sin nombre' }}</h3>
+      <p class="origen">{{ chuleton.origen || 'Origen desconocido' }}</p>
+      
+      <div class="caracteristicas">
+        <span class="tag">⚖️ {{ chuleton.peso || 0 }}kg</span>
+        <span class="tag">🕒 {{ chuleton.maduracion || 0 }} semanas</span>
       </div>
       
-      <div class="card-content">
-        <h3 (click)="abrirDetalle(chuleton)">{{ chuleton.tipo }}</h3>
-        <p class="origen">{{ chuleton.origen }}</p>
-        
-        <div class="caracteristicas">
-          <span class="tag">⚖️ {{ chuleton.peso }}kg</span>
-          <span class="tag">🕒 {{ chuleton.maduracion }} semanas</span>
-        </div>
-        
-        <div class="precio">
-          <span class="precio-valor">{{ chuleton.precio | number:'1.0-0' }}€/kg</span>
-          <span class="precio-total">~{{ (chuleton.precio * chuleton.peso) | number:'1.0-0' }}€</span>
-        </div>
-        
-        <button class="btn-add" (click)="anadirAlCarrito(chuleton)">
-          Añadir al carrito
-        </button>
+      <div class="precio">
+        <span class="precio-valor">{{ (chuleton.precio || 0) | number:'1.0-0' }}€/kg</span>
+        <span class="precio-total">~{{ ((chuleton.precio || 0) * (chuleton.peso || 0)) | number:'1.0-0' }}€</span>
       </div>
+      
+      <button class="btn-add" (click)="anadirAlCarrito(chuleton)">
+        Añadir al carrito
+      </button>
     </div>
   </div>
+</div>
 </div>
 
 <app-modal-detalle 

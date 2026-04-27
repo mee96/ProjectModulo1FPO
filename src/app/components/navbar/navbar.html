@@ -16,6 +16,11 @@
       <span>Carrito</span>
       <span class="cart-badge" *ngIf="totalItems() > 0">{{ totalItems() }}</span>
     </a>
+
+    <a routerLink="/proveedores" routerLinkActive="active" class="nav-link">
+      <span class="link-icon">📦</span>
+      <span>Proveedores</span>
+    </a>
     
     <button (click)="logout()" class="logout-btn">
       <span class="link-icon">🚪</span>
