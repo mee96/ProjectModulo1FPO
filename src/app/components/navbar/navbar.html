@@ -1,35 +1,45 @@
 <nav class="navbar" *ngIf="true">
-  <div class="nav-brand" routerLink="/tienda">
-    <span class="brand-icon">🥩</span>
-    <span class="brand-text">CHULETONES</span>
-    <!-- <span class="brand-sub">vintage</span> -->
-  </div>
-  
-  <div class="nav-links">
-    <a routerLink="/tienda" routerLinkActive="active" class="nav-link">
-      <span class="link-icon">🏠</span>
-      <span>Tienda</span>
-    </a>
+  <div class="nav-container">
+    <!-- Logo -->
+    <div class="nav-brand" routerLink="/tienda">
+      <span class="brand-icon">🥩</span>
+      <span class="brand-text">CHULETONES</span>
+    </div>
 
-     <a routerLink="/proveedores" routerLinkActive="active" class="nav-link">
-      <span class="link-icon">📦</span>
-      <span>Proveedores</span>
-    </a>
-
-    <a routerLink="/restaurantes" routerLinkActive="active" class="nav-link">
-      <span class="link-icon">🍽️</span>
-      <span>Restaurantes</span>
-    </a>
-    
-    <a routerLink="/carrito" routerLinkActive="active" class="nav-link cart-link">
-      <span class="link-icon">🛒</span>
-      <span>Carrito</span>
-      <span class="cart-badge" *ngIf="totalItems() > 0">{{ totalItems() }}</span>
-    </a>
-    
-    <button (click)="logout()" class="logout-btn">
-      <span class="link-icon">🚪</span>
-      <span>Cerrar sesión</span>
+    <!-- Botón hamburguesa (solo se ve en móvil) -->
+    <button class="menu-toggle" (click)="toggleMenu()" [class.active]="menuAbierto">
+      <span></span>
+      <span></span>
+      <span></span>
     </button>
+
+    <!-- Enlaces (en móvil se ocultan/muestran al hacer clic) -->
+    <div class="nav-links" [class.open]="menuAbierto">
+      <a routerLink="/tienda" routerLinkActive="active" class="nav-link" (click)="cerrarMenu()">
+        <span class="link-icon">🏠</span>
+        <span>Tienda</span>
+      </a>
+
+      <a routerLink="/proveedores" routerLinkActive="active" class="nav-link" (click)="cerrarMenu()">
+        <span class="link-icon">📦</span>
+        <span>Proveedores</span>
+      </a>
+
+      <a routerLink="/restaurantes" routerLinkActive="active" class="nav-link" (click)="cerrarMenu()">
+        <span class="link-icon">🍽️</span>
+        <span>Restaurantes</span>
+      </a>
+
+      <a routerLink="/carrito" routerLinkActive="active" class="nav-link cart-link" (click)="cerrarMenu()">
+        <span class="link-icon">🛒</span>
+        <span>Carrito</span>
+        <span class="cart-badge" *ngIf="totalItems() > 0">{{ totalItems() }}</span>
+      </a>
+
+      <button (click)="logout(); cerrarMenu()" class="logout-btn">
+        <span class="link-icon">🚪</span>
+        <span>Cerrar sesión</span>
+      </button>
+    </div>
   </div>
 </nav>

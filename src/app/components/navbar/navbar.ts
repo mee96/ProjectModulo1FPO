@@ -15,6 +15,9 @@ import { Router } from '@angular/router';
 export class NavbarComponent {
   totalItems = computed(() => this.carritoService.totalItems());
   isLoggedIn = computed(() => this.authService.isLoggedIn());
+  
+  // Controla si el menú está abierto en móvil
+  menuAbierto = false;
 
   constructor(
     private authService: AuthService,
@@ -22,8 +25,19 @@ export class NavbarComponent {
     private router: Router
   ) {}
 
+  // Abre/cierra el menú burger
+  toggleMenu() {
+    this.menuAbierto = !this.menuAbierto;
+  }
+
+  // Cierra el menú (al hacer clic en un enlace)
+  cerrarMenu() {
+    this.menuAbierto = false;
+  }
+
   logout(): void {
     this.authService.logout();
     this.router.navigate(['/login']);
+    this.cerrarMenu(); // NUEVO: también cierra el menú
   }
 }
