@@ -1,11 +1,15 @@
 import { Injectable, signal, computed } from '@angular/core';
 import { IChuleton } from '../models/ichuleton';
 
+//El carrito es una signal privada que almacena un array de chuletones. Expongo dos valores computed: totalItems (número total de productos) y totalPrecio (suma de todos los productos con IVA incluido). Cuando añado un producto, compruebo si ya existe para incrementar la cantidad, si no existe lo creo nuevo. Los computed se recalcular automáticamente cuando cambia el carrito
+
+//En el CarritoService, la variable carrito es una signal privada. Cuando añado un producto con anadirAlCarrito(), hago this.carrito.set(...) y automáticamente los computed como totalItems se recalculan y el navbar actualiza el contador
+
 @Injectable({ providedIn: 'root' })
 export class CarritoService {
   private carrito = signal<IChuleton[]>([]);
   
-  // Usamos computed para que se actualice automáticamente
+  // Usamos computed para que se actualice automáticamente/ se recalcula cuando cambia el carrito
   totalItems = computed(() => {
     return this.carrito().reduce((sum, item) => sum + item.cantidad, 0);
   });
@@ -14,7 +18,7 @@ export class CarritoService {
     return this.carrito().reduce((total, item) => total + (item.precio * item.peso * item.cantidad), 0);
   });
 
-  // IMPORTANTE: Cambiar 'añadir' por 'anadir' (sin ñ)
+  // // Si existe, aumenta cantidad; si no, añade nuevo
   anadirAlCarrito(chuleton: IChuleton) {
     const existingItem = this.carrito().find(item => item.tipo === chuleton.tipo);
     

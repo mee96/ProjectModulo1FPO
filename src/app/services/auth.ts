@@ -5,11 +5,11 @@ import { Auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signO
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private currentUserSubject = new BehaviorSubject<any>(null);
-  public currentUser = this.currentUserSubject.asObservable();
+  public currentUser = this.currentUserSubject.asObservable(); // estat reactiu del usuari
 
   constructor(private auth: Auth) {
     user(this.auth).subscribe(user => {
-      this.currentUserSubject.next(user);
+      this.currentUserSubject.next(user); //escolta canvis en l'estat d'autenticació i actualitza el subject
     });
   }
 

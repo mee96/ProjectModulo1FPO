@@ -9,8 +9,8 @@ export interface IChuleton {
    imagen: string;
 }
 
-export interface IRestaurante {
-  nombre: string;
-  direccion: string;
-  coordenadas?: { lat: number; lng: number };
-}
+// export interface IRestaurante {
+//   nombre: string;
+//   direccion: string;
+//   coordenadas?: { lat: number; lng: number };
+// }

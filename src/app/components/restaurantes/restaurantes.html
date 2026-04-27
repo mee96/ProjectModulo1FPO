@@ -10,9 +10,9 @@
     <div class="restaurante-card" *ngFor="let rest of restaurantes()">
       <div class="card-image">
         <img [src]="rest.imagen || 'assets/restaurante-default.jpg'" [alt]="rest.nombre">
-        <div class="estado" [class.abierto]="estaAbierto(rest.horario || '')">
+        <!-- <div class="estado" [class.abierto]="estaAbierto(rest.horario || '')">
           {{ estaAbierto(rest.horario || '') ? '🟢 Abierto' : '🔴 Cerrado' }}
-        </div>
+        </div> -->
       </div>
       <div class="card-content">
         <h3 (click)="abrirDetalle(rest)">{{ rest.nombre }}</h3>
