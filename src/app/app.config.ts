@@ -8,7 +8,7 @@ import { provideAuth } from '@angular/fire/auth';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 
 
-
+//El app.config.ts es el archivo de configuración principal de Angular. Aquí le decimos a la aplicación qué rutas usar y cómo conectarse a Firebase. La API key es la clave que identifica nuestro proyecto en Firebase y permite usar la autenticación para que los usuarios puedan registrarse y hacer login
 
 export const appConfig: ApplicationConfig = {
   providers: [
