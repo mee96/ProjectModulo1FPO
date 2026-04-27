@@ -1,0 +1,49 @@
+<app-navbar></app-navbar>
+
+<div class="restaurantes-container">
+  <div class="header">
+    <h1>🍽️ Restaurantes de Chuletones</h1>
+    <p>Los mejores sitios para disfrutar de un buen chuletón en Barcelona y L'Hospitalet</p>
+  </div>
+
+  <div class="restaurantes-grid">
+    <div class="restaurante-card" *ngFor="let rest of restaurantes()">
+      <div class="card-image">
+        <img [src]="rest.imagen || 'assets/restaurante-default.jpg'" [alt]="rest.nombre">
+        <div class="estado" [class.abierto]="estaAbierto(rest.horario || '')">
+          {{ estaAbierto(rest.horario || '') ? '🟢 Abierto' : '🔴 Cerrado' }}
+        </div>
+      </div>
+      <div class="card-content">
+        <h3 (click)="abrirDetalle(rest)">{{ rest.nombre }}</h3>
+        <p class="direccion">📍 {{ rest.direccion }}</p>
+        <p class="especialidad">✨ {{ rest.especialidad }}</p>
+        <div class="card-buttons">
+          <button class="btn-detalle" (click)="abrirDetalle(rest)">Ver detalles</button>
+          <button class="btn-mapa" (click)="abrirMapa(rest.direccion)">🗺️ Ver en mapa</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de detalles -->
+<div class="modal-overlay" *ngIf="showModal()" (click)="cerrarModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <button class="close-btn" (click)="cerrarModal()">✕</button>
+    <div class="modal-header">
+      <h2>{{ selectedRestaurante()?.nombre }}</h2>
+    </div>
+    <div class="modal-body">
+      <p><strong>📍 Dirección:</strong> {{ selectedRestaurante()?.direccion }}</p>
+      <p><strong>📞 Teléfono:</strong> {{ selectedRestaurante()?.telefono || 'No disponible' }}</p>
+      <p><strong>⏰ Horario:</strong> {{ selectedRestaurante()?.horario || 'No disponible' }}</p>
+      <p><strong>✨ Especialidad:</strong> {{ selectedRestaurante()?.especialidad }}</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-mapa" (click)="abrirMapa(selectedRestaurante()?.direccion || '')">
+        🗺️ Abrir en Google Maps
+      </button>
+    </div>
+  </div>
+</div>

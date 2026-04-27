@@ -29,5 +29,10 @@ export const routes: Routes = [
         path: 'proveedores',  
         loadComponent: () => import('./components/proveedores/proveedores').then(m => m.ProveedoresComponent),
         ...canActivate(redirectUnauthorizedToLogin)
+    },
+    {
+        path: 'restaurantes',  
+        loadComponent: () => import('./components/restaurantes/restaurantes').then(m => m.RestaurantesComponent),
+        ...canActivate(redirectUnauthorizedToLogin)
     }
 ];
